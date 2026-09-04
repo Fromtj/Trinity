@@ -94,30 +94,16 @@ const InstagramIcon = () => (
 export default function Footer() {
   return (
     <footer className="bg-[#0D0D0D] text-white">
-      {/* ── Лента брендов (бесконечная медленная прокрутка) ── */}
-      <style>{`
-        @keyframes trinity-marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        /* уважаем настройку "меньше движения" в системе */
-        @media (prefers-reduced-motion: reduce) {
-          .trinity-brands-track { animation: none !important; }
-        }
-      `}</style>
-      <div className="overflow-hidden border-b border-white/10 py-8">
-        {/* список продублирован дважды -> при сдвиге на -50% получается бесшовный цикл.
-            Скорость меняется числом секунд в [animation:...] (больше = медленнее). */}
-        <div className="trinity-brands-track flex w-max items-center [animation:trinity-marquee_35s_linear_infinite] hover:[animation-play-state:paused]">
-          {[...BRANDS, ...BRANDS].map((brand, i) => {
+      {/* ── Лента брендов ── */}
+      <div className="border-b border-white/10">
+        <div className="mx-auto flex max-w-[1400px] items-center gap-12 overflow-x-auto px-10 py-8 max-[700px]:px-5 max-[700px]:gap-8 [scrollbar-width:none]">
+          {BRANDS.map((brand) => {
             const active = brand === ACTIVE_BRAND;
             return (
               <button
-                key={`${brand}-${i}`}
+                key={brand}
                 type="button"
-                aria-hidden={i >= BRANDS.length}
-                tabIndex={i >= BRANDS.length ? -1 : 0}
-                className={`shrink-0 mr-12 max-[700px]:mr-8 text-[clamp(22px,2.4vw,34px)] font-bold transition-colors ${
+                className={`shrink-0 text-[clamp(22px,2.4vw,34px)] font-bold transition-colors ${
                   active
                     ? "text-white border-b-2 border-[#2CB1B5] pb-1"
                     : "text-white/25 hover:text-white/50"
