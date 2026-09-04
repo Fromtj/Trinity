@@ -1,4 +1,3 @@
-import Header from "./components/header/Header"
 import Hero from "./components/hero/Hero"
 import PopularCars from "./components/popularCars/PopularCars"
 import SpecialOffers from "./components/specialOffers/SpecialOffers"
@@ -11,7 +10,6 @@ import Footer from "./components/footer/Footer"
 
 function App() {
   return((<>
-  <Header />
   <Hero />
   <PopularCars />
   <SpecialOffers />
